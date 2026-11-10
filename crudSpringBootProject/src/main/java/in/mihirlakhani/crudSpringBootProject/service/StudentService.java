@@ -2,6 +2,7 @@ package in.mihirlakhani.crudSpringBootProject.service;
 
 import in.mihirlakhani.crudSpringBootProject.entity.Student;
 import in.mihirlakhani.crudSpringBootProject.repository.StudentRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,36 +17,36 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
+    @Transactional
     public Student createStudent(Student studentReq){
         //business logic
-        System.out.println("Inside " + this.getClass().getSimpleName());
 
         Student studentResp = studentRepository.save(studentReq);
         return studentResp;
     }
+    @Transactional
+    public Student getStudent(Long id){
 
-    public Optional<Student> getStudent(Long id){
-
-        Optional<Student> studentResponse = studentRepository.findById(id);
+        Student studentResponse = studentRepository.findById(id);
 
         return studentResponse;
     }
 
-    public List<Student> getAllStudent(){
-
-        List<Student> studentList = studentRepository.findAll();
-
-        return studentList;
-    }
-
+//    public List<Student> getAllStudent(){
+//
+//        List<Student> studentList = studentRepository.findAll();
+//
+//        return studentList;
+//    }
+    @Transactional
     public Student updateStudent(Long id, Student student){
-        Optional<Student> studentFound = studentRepository.findById(id);
+        Student studentFound = studentRepository.findById(id);
 
-        if (!studentFound.isPresent()){
+        if (studentFound == null){
             return null;
         }
 
-        Student studentGot = studentFound.get();
+        Student studentGot = studentFound;
 
         studentGot.setAge(student.getAge());
         studentGot.setEmail(student.getEmail());
@@ -58,13 +59,11 @@ public class StudentService {
         return studentGot;
     }
 
+    @Transactional
     public Boolean deleteStudent(Long id){
-        if(!studentRepository.existsById(id)){
-            return false;
-        }
 
-        studentRepository.deleteById(id);
-        return true;
+        return studentRepository.deleteById(id);
+
     }
 
 

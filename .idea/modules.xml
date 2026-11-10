@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/crudSpringBootProject.iml" filepath="$PROJECT_DIR$/.idea/crudSpringBootProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/crudSpringBootProject/crudSpringBootProject.iml" filepath="$PROJECT_DIR$/crudSpringBootProject/crudSpringBootProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/crudSpringBootProject - hibernate.iml" filepath="$PROJECT_DIR$/.idea/crudSpringBootProject - hibernate.iml" />
     </modules>
   </component>
 </project>

@@ -1,7 +1,6 @@
 package in.mihirlakhani.crudSpringBootProject.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.*;
 
@@ -9,8 +8,19 @@ import java.util.*;
 public class Student {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(
+            name="student_name",
+            nullable = false,
+            length = 100
+    )
     private String name;
+
+    @Column(
+            unique = true
+    )
     private String email;
     private int age;
     private int rollNo;

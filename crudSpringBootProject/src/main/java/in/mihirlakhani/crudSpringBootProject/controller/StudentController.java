@@ -32,9 +32,9 @@ public class StudentController {
 
     @GetMapping("/get/{id}")
     public ResponseEntity<Student> getStudent(@PathVariable Long id){
-        Optional<Student> studentResp = studentService.getStudent(id);
+        Student studentResp = studentService.getStudent(id);
 
-        if(!studentResp.isPresent()){
+        if(studentResp == null){
             return ResponseEntity
                     .status(404)
                     .build();
@@ -42,23 +42,23 @@ public class StudentController {
 
         return ResponseEntity
                 .status(200)
-                .body(studentResp.get());
+                .body(studentResp);
     }
 
-    @GetMapping("/getAll")
-    public ResponseEntity<List<Student>> getAllStudents(){
-        List<Student> studentList= studentService.getAllStudent();
-
-        if (studentList.isEmpty()){
-            return ResponseEntity
-                    .status(404)
-                    .build();
-        }
-
-        return ResponseEntity
-                .status(200)
-                .body(studentList);
-    }
+//    @GetMapping("/getAll")
+//    public ResponseEntity<List<Student>> getAllStudents(){
+//        List<Student> studentList= studentService.getAllStudent();
+//
+//        if (studentList.isEmpty()){
+//            return ResponseEntity
+//                    .status(404)
+//                    .build();
+//        }
+//
+//        return ResponseEntity
+//                .status(200)
+//                .body(studentList);
+//    }
 
     @PutMapping("update/{id}")
     public ResponseEntity<Student> updateStudent(@PathVariable Long id,
